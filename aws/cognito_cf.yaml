@@ -1,0 +1,102 @@
+---
+AWSTemplateFormatVersion: 2010-09-09
+Description: CF for cognito resource creation.
+
+Metadata:
+  owner: roeland.schumacher@proquest.com
+
+Parameters:
+  DynamoDBName:
+    Description: Name of DyDB for logging 
+    Type: String
+    Default: cbgCALogDB
+
+  UserPoolNameNG:
+    Description: Name of Cognito Userpool
+    Type: String
+    Default: cbgCAng
+
+Resources:
+  cbgCAUserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      UserPoolName:
+      - Ref: UserPoolNameNG
+
+  cbgCAPolicy1:
+    Type: AWS::IAM::Policy
+    Properties: 
+      PolicyName: cbg-CA-policy
+      Roles:
+      - Ref: cbgCAAimRole
+      PolicyDocument: 
+        Version: 2012-10-17
+        Statement: 
+        - Effect: Allow
+          Action: 
+          - mobileanalytics:PutEvents
+          - cognito-sync:*
+          Resource: "*"
+
+  cbgCAPolicy2:
+    Type: AWS::IAM::Policy
+    Properties: 
+      PolicyName: cbg-CA-policy
+      Roles:
+      - Ref: cbgCAAimRole
+      PolicyDocument: 
+        Version: 2012-10-17
+        Statement: 
+        - Effect: Allow
+          Action:
+          - mobileanalytics:PutEvents
+          - cognito-sync:*
+          - cognito-identity:*
+          Resource:
+          - "*"
+
+  cbgCAPolicy3:
+    Type: AWS::IAM::Policy
+    Properties: 
+      PolicyName: cbg-CA-policy
+      Roles:
+      - Ref: cbgCAAimRole
+      PolicyDocument: 
+        Version: 2012-10-17
+        Statement: 
+        - Effect: Allow
+          Action:
+          - dynamodb:GetItem
+          - dynamodb:BatchGetItem
+          - dynamodb:Query
+          - dynamodb:PutItem
+          - dynamodb:UpdateItem
+          - dynamodb:DeleteItem
+          Resource:
+          - "*" # needs arn
+          Condition:
+            ForAllValues:StringEquals:
+              dynamodb:LeadingKeys:
+              - "${cognito-identity.amazonaws.com:sub}"
+
+  cbgCAAimRole:
+    Type: AWS::IAM::Role
+    Properties: 
+      RoleName: cbg-ca-role
+      AssumeRolePolicyDocument: 
+        Version: "2012-10-17"
+        Statement: 
+        - Effect: "Allow"
+          Principal: 
+            Service: 
+            - "ec2.amazonaws.com"
+          Action: 
+          - "sts:AssumeRole"
+
+Outputs:
+  poolId:
+    Description: UserPool ID
+    Value: 
+      Fn::GetAtt:
+      - cbgCAUserPool
+      - Arn
