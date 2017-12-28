@@ -20,8 +20,7 @@ Resources:
   cbgCAUserPool:
     Type: AWS::Cognito::UserPool
     Properties:
-      UserPoolName:
-      - Ref: UserPoolNameNG
+      UserPoolName: cbgCAng # needs ref to parameters
 
   cbgCAPolicy1:
     Type: AWS::IAM::Policy
