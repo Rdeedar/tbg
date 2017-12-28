@@ -11,7 +11,7 @@ Parameters:
     Type: String
     Default: cbgCALogDB
 
-  UserPoolNameNG:
+  UserPoolNameNG: # maybe this can;t be a parameter?
     Description: Name of Cognito Userpool
     Type: String
     Default: cbgCAng
@@ -91,6 +91,28 @@ Resources:
             - "ec2.amazonaws.com"
           Action: 
           - "sts:AssumeRole"
+
+  dydbTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeDefinition
+      GlobalSecondaryIndexes:
+        - GlobalSecondaryIndexes
+      KeySchema:
+        - KeySchema
+      LocalSecondaryIndexes:
+        - LocalSecondaryIndexes
+      ProvisionedThroughput:
+        ProvisionedThroughput
+      StreamSpecification:
+        StreamSpecification
+      TableName: cbgCALogs
+      Tags: 
+        - Resource Tag
+      TimeToLiveSpecification: 
+        TimeToLiveSpecification
+
 
 Outputs:
   poolId:
