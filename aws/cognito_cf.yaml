@@ -96,22 +96,18 @@ Resources:
     Type: AWS::DynamoDB::Table
     Properties:
       AttributeDefinitions:
-        - AttributeDefinition
-      GlobalSecondaryIndexes:
-        - GlobalSecondaryIndexes
+        - AttributeName: userId
+          AttributeType: S
+        - AttributeName: activityDate
+          AttributeType: S
       KeySchema:
-        - KeySchema
-      LocalSecondaryIndexes:
-        - LocalSecondaryIndexes
+        - AttributeName: userId
+          KeyType: HASH 
+        - AttributeName: activityDate
+          KeyType: RANGE
       ProvisionedThroughput:
-        ProvisionedThroughput
-      StreamSpecification:
-        StreamSpecification
-      TableName: cbgCALogs
-      Tags: 
-        - Resource Tag
-      TimeToLiveSpecification: 
-        TimeToLiveSpecification
+        ReadCapacityUnits: 1
+        WriteCapacityUnits: 1
 
 
 Outputs:
