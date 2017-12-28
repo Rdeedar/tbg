@@ -114,6 +114,27 @@ Resources:
     Properties: 
       BucketName: cbgcabucket1221
 
+  s3bucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties: 
+      Bucket: 
+        Ref: s3bucket
+      PolicyDocument:
+        Statement:
+          - Action: 
+              - "s3:GetObject"
+            Effect: "Allow"
+            Resource: 
+              Fn::Join: 
+                - ""
+                - 
+                  - "arn:aws:s3:::"
+                  - 
+                    Ref: s3bucket
+                  - "/*"
+            Principal: "*"
+
+
 Outputs:
   poolId:
     Description: UserPool ID
