@@ -83,14 +83,14 @@ Resources:
     Properties: 
       RoleName: cbg-ca-role
       AssumeRolePolicyDocument: 
-        Version: "2012-10-17"
+        Version: 2012-10-17
         Statement: 
-        - Effect: "Allow"
+        - Effect: Allow
           Principal: 
             Service: 
-            - "ec2.amazonaws.com"
+            - ec2.amazonaws.com
           Action: 
-          - "sts:AssumeRole"
+          - sts:AssumeRole
 
   dydbTable:
     Type: AWS::DynamoDB::Table
@@ -122,8 +122,8 @@ Resources:
       PolicyDocument:
         Statement:
           - Action: 
-              - "s3:GetObject"
-            Effect: "Allow"
+              - s3:GetObject
+            Effect: Allow
             Resource: 
               Fn::Join: 
                 - ""
