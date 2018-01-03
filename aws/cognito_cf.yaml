@@ -147,13 +147,13 @@ Resources:
 
 Outputs:
   poolId:
-    Description: UserPool ID
+    Description: ARN with UserPool ID
     Value: 
       Fn::GetAtt:
       - cbgCAUserPool
       - Arn
 
-  poolAppId:
+  poolAppId/clientId:
     Description: UserPool App Id
     Value: 
       Ref: cbgCAApp
@@ -163,11 +163,3 @@ Outputs:
       - s3bucket
       - WebsiteURL
     Description: URL for website hosted on S3
-  S3BucketSecureURL:
-    Value: !Join 
-      - ''
-      - - 'https://'
-        - !GetAtt 
-          - s3bucket
-          - DomainName
-    Description: Name of S3 bucket to hold website content
