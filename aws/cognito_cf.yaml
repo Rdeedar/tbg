@@ -36,7 +36,7 @@ Resources:
     Type: AWS::Cognito::UserPoolClient
     Properties:
         ClientName: cbgCAngApp
-        GenerateSecret: False
+        GenerateSecret: True
         RefreshTokenValidity: 30
         UserPoolId: !Ref cbgCAUserPool
 
