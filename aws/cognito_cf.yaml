@@ -126,23 +126,20 @@ Resources:
   s3bucketPolicy:
     Type: AWS::S3::BucketPolicy
     Properties: 
-      Bucket: 
-        Ref: s3bucket
       PolicyDocument:
+        Id: MyPolicy
+        Version: 2012-10-17
         Statement:
-          - Action: 
-              - s3:GetObject
+          - Sid: PublicReadForGetBucketObjects
             Effect: Allow
-            Resource: 
-              Fn::Join: 
-                - ""
-                - 
-                  - "arn:aws:s3:::"
-                  - 
-                    Ref: s3bucket
-                  - "/*"
-            Principal: "*"
-
+            Principal: '*'
+            Action: 's3:GetObject'
+            Resource: !Join 
+              - ''
+              - - 'arn:aws:s3:::'
+                - !Ref s3bucket
+                - /*
+      Bucket: !Ref s3bucket
 
 Outputs:
   poolId:
