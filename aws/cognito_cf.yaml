@@ -28,7 +28,7 @@ Resources:
         ClientName: cbgCAngApp,
         GenerateSecret: True
         RefreshTokenValidity: 30
-        UserPoolId: !Ref UserPool
+        UserPoolId: !Ref cbgCAUserPool
 
   cbgCAPolicy1:
     Type: AWS::IAM::Policy
