@@ -22,7 +22,7 @@ Resources:
     Properties:
       UserPoolName: cbgCAng # needs ref to parameters
       AutoVerifiedAttributes: 
-        - Email
+        - email
       Policies: 
         PasswordPolicy: 
           MinimumLength: 6
