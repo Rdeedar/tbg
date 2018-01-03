@@ -163,8 +163,8 @@ Outputs:
       - cbgCAUserPool
       - Arn
 
-  poolAppId/clientId:
-    Description: UserPool App Id
+  poolAppId:
+    Description: UserPool App Id / Client ID
     Value: 
       Ref: cbgCAApp
 
