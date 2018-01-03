@@ -151,3 +151,8 @@ Outputs:
       Fn::GetAtt:
       - cbgCAUserPool
       - Arn
+
+  poolId:
+    Description: UserPool App Id
+    Value: 
+      Ref: cbgCAApp
