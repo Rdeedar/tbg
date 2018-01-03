@@ -22,6 +22,14 @@ Resources:
     Properties:
       UserPoolName: cbgCAng # needs ref to parameters
 
+  cbgCAApp:
+    Type: "AWS::Cognito::UserPoolClient"
+    Properties:
+        ClientName: cbgCAngApp,
+        GenerateSecret: True
+        RefreshTokenValidity: 30
+        UserPoolId: cbgCAngAppId
+
   cbgCAPolicy1:
     Type: AWS::IAM::Policy
     Properties: 
